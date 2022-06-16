@@ -6,11 +6,55 @@
 /*   By: tnaton <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/14 18:41:17 by tnaton            #+#    #+#             */
-/*   Updated: 2022/06/14 18:41:38 by tnaton           ###   ########.fr       */
+/*   Updated: 2022/06/16 12:52:36 by tnaton           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "printf.h"
+
+void	pointflag(t_str *id, char *ret)
+{
+	int	i;
+	int	last;
+
+	i = 1;
+	while (id->str[i])
+	{
+		if (isdigit(id->str[i]) && id->str[i - 1] != '.')
+		{
+			last = i;
+			while (ft_isdigit(id->str[i]))
+				i++;
+			last = ft_atoi_free(ft_substr(id->str, last, i - last));
+			if (last < (int)ft_strlen(ret))
+			{
+				free(id->str);
+				id->str = ret;
+				return ;
+			}
+			ret = addspace(ret, (last - ft_strlen(ret)), 0);
+		}
+		if (id->str[i] == '-')
+		{
+			while (id->str[i] == '-')
+				i++;
+			last = i;
+			while (ft_isdigit(id->str[i]))
+				i++;
+			last = ft_atoi_free(ft_substr(id->str, last, i - last));
+			if (last < (int)ft_strlen(ret))
+			{
+				free(id->str);
+				id->str = ret;
+				return ;
+			}
+			ret = addspace(ret, (last - ft_strlen(ret)), 1);
+		}
+		i++;
+	}
+	free(id->str);
+	id->str = ret;
+}
 
 void	typep(t_str *current, va_list *arg)
 {
@@ -25,6 +69,5 @@ void	typep(t_str *current, va_list *arg)
 	}
 	else
 		ret = ft_strdup("(nil)");
-	free(current->str);
-	current->str = ret;
+	pointflag(current, ret);
 }

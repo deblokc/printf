@@ -6,7 +6,7 @@
 /*   By: tnaton <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/06 16:48:33 by tnaton            #+#    #+#             */
-/*   Updated: 2022/06/14 20:06:34 by tnaton           ###   ########.fr       */
+/*   Updated: 2022/06/16 17:04:00 by tnaton           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int	needex(char *str)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (str[i])
@@ -25,7 +25,6 @@ int	needex(char *str)
 	}
 	return (0);
 }
-
 
 void	typeprc(t_str *current)
 {
@@ -56,7 +55,7 @@ void	expand(t_str *current, va_list *arg)
 	else if (current->str[i] == 'x')
 		typex(current, arg);
 	else if (current->str[i] == 'X')
-		typeX(current, arg);
+		typegrosx(current, arg);
 	else if (current->str[i] == '%')
 		typeprc(current);
 }

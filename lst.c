@@ -6,7 +6,7 @@
 /*   By: tnaton <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/14 18:38:33 by tnaton            #+#    #+#             */
-/*   Updated: 2022/06/14 20:03:13 by tnaton           ###   ########.fr       */
+/*   Updated: 2022/06/16 17:03:25 by tnaton           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ t_str	*getlst(const char *input)
 	{
 		if (input[i] == '%')
 		{
-			current->next = newstr(ft_substr(input, last, i - last), current); 
+			current->next = newstr(ft_substr(input, last, i - last), current);
 			current = current->next;
 			last = i;
 			i++;
@@ -80,7 +80,8 @@ t_str	*getlst(const char *input)
 				i++;
 			if (input[i])
 			{
-				current->next = newstr(ft_substr(input, last, i - last + 1), current);
+				current->next = newstr(ft_substr(input, last, \
+							i - last + 1), current);
 				current = current->next;
 				last = i + 1;
 			}
@@ -107,7 +108,7 @@ t_str	*getstr(const char *input, va_list *arg)
 	while (lst)
 	{
 		if (lst->type == 0)
-			ret->str = ft_strjoin_free(ret->str, lst->str); 
+			ret->str = ft_strjoin_free(ret->str, lst->str);
 		else
 		{
 			if (lst->type == 1)

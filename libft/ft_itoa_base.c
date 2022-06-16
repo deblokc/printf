@@ -6,7 +6,7 @@
 /*   By: tnaton <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/01 17:37:48 by tnaton            #+#    #+#             */
-/*   Updated: 2021/12/02 12:19:15 by tnaton           ###   ########.fr       */
+/*   Updated: 2022/06/16 17:10:01 by tnaton           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@ static	int	ft_size(unsigned long long nb, int len)
 {
 	int	i;
 
+	if (!nb)
+		return (1);
 	i = 0;
 	while (nb)
 	{

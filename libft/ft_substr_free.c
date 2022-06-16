@@ -1,23 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   unsigned.c                                         :+:      :+:    :+:   */
+/*   ft_substr_free.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tnaton <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/14 18:42:31 by tnaton            #+#    #+#             */
-/*   Updated: 2022/06/16 16:42:36 by tnaton           ###   ########.fr       */
+/*   Created: 2021/11/23 14:54:13 by tnaton            #+#    #+#             */
+/*   Updated: 2022/06/16 12:39:51 by tnaton           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "printf.h"
+#include "libft.h"
 
-void	typeu(t_str *current, va_list *arg)
+char	*ft_substr_free(char *s, unsigned int start, size_t len)
 {
-	char			*ret;
-	unsigned long	i;
+	char			*dest;
+	unsigned int	i;
+	unsigned int	j;
 
-	i = (unsigned int)va_arg(*arg, unsigned int);
-	ret = ft_itoa_base(i, "0123456789");
-	intflag(current, ret);
+	i = ft_strlen(s);
+	j = 0;
+	if (len > i)
+		len = i;
+	dest = malloc(sizeof(char) * len + 1);
+	if (!dest || !s)
+		return (NULL);
+	while (s[j])
+		j++;
+	i = 0;
+	while (i < len && start < j)
+		dest[i++] = s[start++];
+	dest[i] = '\0';
+	free(s);
+	return (dest);
 }

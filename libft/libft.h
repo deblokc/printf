@@ -6,7 +6,7 @@
 /*   By: tnaton <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/24 11:23:31 by tnaton            #+#    #+#             */
-/*   Updated: 2022/06/06 19:28:28 by tnaton           ###   ########.fr       */
+/*   Updated: 2022/06/16 17:01:50 by tnaton           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,8 +79,9 @@ char				*ft_strjoin_free(char *s1, char *s2);
 int					ft_strcmp(const char *s1, const char *s2);
 long long			ft_atoi_free(char *nptr);
 int					ft_strcmp_free(char *s1, const char *s2);
-int		ft_numlen(int nb);
-char	*ft_itoa_base(unsigned long long nb, char *base_to);
-char	*ft_convert_base(char *nb, char *base_from, char *base_to);
+int					ft_numlen(int nb);
+char				*ft_itoa_base(unsigned long long nb, char *base_to);
+char				*ft_convert_base(char *nb, char *base_from, char *base_to);
+char				*ft_substr_free(char *s, unsigned int start, size_t len);
 
 #endif
