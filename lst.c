@@ -6,7 +6,7 @@
 /*   By: tnaton <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/14 18:38:33 by tnaton            #+#    #+#             */
-/*   Updated: 2022/06/16 17:03:25 by tnaton           ###   ########.fr       */
+/*   Updated: 2022/06/17 13:02:53 by tnaton           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,26 @@ t_str	*getcleanlst(t_str *first)
 	return (first);
 }
 
+t_str	*getlst2(const char *input, int *i, t_str *current)
+{
+	int	last;
+
+	current->next = newstr(ft_substr(input, last, *i - last), current);
+	current = current->next;
+	last = *i;
+	*i += 1;
+	while (input[*i] && !isdel(input[*i]))
+		*i += 1;
+	if (input[*i])
+	{
+		current->next = newstr(ft_substr(input, last, \
+					*i - last + 1), current);
+		current = current->next;
+		last = *i + 1;
+	}
+	return (current);
+}
+
 t_str	*getlst(const char *input)
 {
 	t_str	*first;
@@ -71,27 +91,32 @@ t_str	*getlst(const char *input)
 	while (input[i])
 	{
 		if (input[i] == '%')
-		{
-			current->next = newstr(ft_substr(input, last, i - last), current);
-			current = current->next;
-			last = i;
-			i++;
-			while (input[i] && !isdel(input[i]))
-				i++;
-			if (input[i])
-			{
-				current->next = newstr(ft_substr(input, last, \
-							i - last + 1), current);
-				current = current->next;
-				last = i + 1;
-			}
-		}
+			current = getlst2(input, &i, current);
 		i++;
 	}
 	if (last != i)
 		current->next = newstr(ft_substr(input, last, i - last), current);
 	first = getcleanlst(first);
 	return (first);
+}
+
+t_str	*getstr2(t_str *lst, t_str *ret)
+{
+	if (lst->type == 1)
+	{
+		ret->next = newstr(NULL, ret);
+		ret->next->type = 1;
+	}
+	else
+	{
+		ret->next = newstr(lst->str, ret);
+		ret->next->type = lst->type;
+	}
+	ret = ret->next;
+	ret->c = lst->c;
+	ret->next = newstr(NULL, ret);
+	ret = ret->next;
+	return (ret);
 }
 
 t_str	*getstr(const char *input, va_list *arg)
@@ -110,22 +135,7 @@ t_str	*getstr(const char *input, va_list *arg)
 		if (lst->type == 0)
 			ret->str = ft_strjoin_free(ret->str, lst->str);
 		else
-		{
-			if (lst->type == 1)
-			{
-				ret->next = newstr(NULL, ret);
-				ret->next->type = 1;
-			}
-			else
-			{
-				ret->next = newstr(lst->str, ret);
-				ret->next->type = lst->type;
-			}
-			ret = ret->next;
-			ret->c = lst->c;
-			ret->next = newstr(NULL, ret);
-			ret = ret->next;
-		}
+			ret = getstr2(lst, ret);
 		tmp = lst;
 		lst = lst->next;
 		free(tmp);

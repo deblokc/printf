@@ -6,7 +6,7 @@
 /*   By: tnaton <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/06 16:48:33 by tnaton            #+#    #+#             */
-/*   Updated: 2022/06/16 17:04:00 by tnaton           ###   ########.fr       */
+/*   Updated: 2022/06/17 12:18:35 by tnaton           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,18 @@ void	expandlst(t_str *lst, va_list *arg)
 	}
 }
 
+int	printc(char c)
+{
+	write(1, &c, 1);
+	return (1);
+}
+
+int	prints(char *str)
+{
+	ft_putstr_fd(str, 1);
+	return (ft_strlen(str));
+}
+
 int	putandlen(t_str *lst)
 {
 	int		len;
@@ -79,27 +91,13 @@ int	putandlen(t_str *lst)
 	while (lst)
 	{
 		if (lst->type == 0)
-		{
-			ft_putstr_fd(lst->str, 1);
-			len += ft_strlen(lst->str);
-		}
+			len += prints(lst->str);
 		else if (lst->type == 1)
-		{
-			write(1, &lst->c, 1);
-			len++;
-		}
+			len += printc(lst->c);
 		else if (lst->type == 2)
-		{
-			ft_putstr_fd(lst->str, 1);
-			len += ft_strlen(lst->str) + 1;
-			write(1, &lst->c, 1);
-		}
+			len += prints(lst->str) + printc(lst->c);
 		else if (lst->type == 3)
-		{
-			write(1, &lst->c, 1);
-			len += ft_strlen(lst->str) + 1;
-			ft_putstr_fd(lst->str, 1);
-		}
+			len += printc(lst->c) + prints(lst->str);
 		tmp = lst;
 		free(lst->str);
 		lst = lst->next;
