@@ -6,7 +6,7 @@
 /*   By: tnaton <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/14 18:41:46 by tnaton            #+#    #+#             */
-/*   Updated: 2022/06/17 13:09:25 by tnaton           ###   ########.fr       */
+/*   Updated: 2022/06/17 14:10:34 by tnaton           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -147,6 +147,30 @@ char	*intflag3(t_str *id, char *ret, int *i)
 	return (ret);
 }
 
+char	*leplus(t_str *id, char *ret)
+{
+	int	isneg;
+
+	ret = getneg(ret, &isneg);
+	if (!isneg)
+		ret = ft_strjoin_free(ft_strdup("+"), ret);
+	else
+		ret = ft_strjoin_free(ft_strdup("-"), ret);
+	return (ret);
+}
+
+char	*leespace(t_str *id, char *ret)
+{
+	int	isneg;
+
+	ret = getneg(ret, &isneg);
+	if (!isneg)
+		ret = ft_strjoin_free(ft_strdup(" "), ret);
+	else
+		ret = ft_strjoin_free(ft_strdup("-"), ret);
+	return (ret);
+}
+
 void	intflag(t_str *id, char *ret)
 {
 	int	i;
@@ -164,21 +188,9 @@ void	intflag(t_str *id, char *ret)
 		i++;
 	}
 	if (aschr(id->str, ' '))
-	{
-		ret = getneg(ret, &isneg);
-		if (!isneg)
-			ret = ft_strjoin_free(ft_strdup(" "), ret);
-		else
-			ret = ft_strjoin_free(ft_strdup("-"), ret);
-	}
+		ret = leespace(id, ret);
 	if (aschr(id->str, '+'))
-	{
-		ret = getneg(ret, &isneg);
-		if (!isneg)
-			ret = ft_strjoin_free(ft_strdup("+"), ret);
-		else
-			ret = ft_strjoin_free(ft_strdup("-"), ret);
-	}
+		ret = leplus(id, ret);
 	free(id->str);
 	id->str = ret;
 }

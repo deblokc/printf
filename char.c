@@ -6,7 +6,7 @@
 /*   By: tnaton <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/14 18:40:07 by tnaton            #+#    #+#             */
-/*   Updated: 2022/06/16 17:14:34 by tnaton           ###   ########.fr       */
+/*   Updated: 2022/06/17 15:47:12 by tnaton           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,21 @@ void	changeid(t_str *id, int padding)
 		id->str[padding] = ' ';
 }
 
+int	subcharflag(t_str *id, int i)
+{
+	int	last;
+
+	last = i;
+	while (ft_isdigit(id->str[i]))
+		i++;
+	last = ft_atoi_free(ft_substr(id->str, last, i - last));
+	if (last < 2)
+		return (0);
+	changeid(id, last);
+	id->type = 2;
+	return (1);
+}
+
 int	charflag(t_str *id)
 {
 	int		last;
@@ -30,17 +45,7 @@ int	charflag(t_str *id)
 	while (id->str[i])
 	{
 		if (ft_isdigit(id->str[i]))
-		{
-			last = i;
-			while (ft_isdigit(id->str[i]))
-				i++;
-			last = ft_atoi_free(ft_substr(id->str, last, i - last));
-			if (last < 2)
-				return (0);
-			changeid(id, last);
-			id->type = 2;
-			return (1);
-		}
+			return (subcharflag(id, i));
 		else if (id->str[i] == '-')
 		{
 			while (id->str[i] == '-')
