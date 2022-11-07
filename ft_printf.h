@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   printf.h                                           :+:      :+:    :+:   */
+/*   ft_printf.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tnaton <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -10,33 +10,33 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PRINTF_H
-# define PRINTF_H
+#ifndef FT_PRINTF_H
+# define FT_PRINTF_H
 
 # include "libft/libft.h"
 # include <stdarg.h>
 
 typedef struct s_str
 {
-	char	*str;
-	char	c;
-	int		type;
-	struct s_str *next;
-	struct s_str *prev;
-} t_str;
+	char			*str;
+	char			c;
+	int				type;
+	struct s_str	*next;
+	struct s_str	*prev;
+}	t_str;
 
-int	ft_printf(const char *input, ...);
+int		ft_printf(const char *input, ...);
 void	typeu(t_str *current, va_list *arg);
-int	putandlen(t_str *lst);
+int		putandlen(t_str *lst);
 void	expandlst(t_str *lst, va_list *arg);
 void	expand(t_str *current, va_list *arg);
 void	typeprc(t_str *current);
-int	needex(char *str);
+int		needex(char *str);
 void	typep(t_str *current, va_list *arg);
 t_str	*getstr(const char *input, va_list *arg);
 t_str	*getlst(const char *input);
 t_str	*getcleanlst(t_str *first);
-int	isdel(char c);
+int		isdel(char c);
 t_str	*newstr(char *str, t_str *prev);
 void	typegrosx(t_str *current, va_list *arg);
 void	typex(t_str *current, va_list *arg);
