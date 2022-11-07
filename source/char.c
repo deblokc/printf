@@ -6,7 +6,7 @@
 /*   By: tnaton <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/14 18:40:07 by tnaton            #+#    #+#             */
-/*   Updated: 2022/06/16 17:14:34 by tnaton           ###   ########.fr       */
+/*   Updated: 2022/06/14 20:07:32 by tnaton           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 void	changeid(t_str *id, int padding)
 {
 	free(id->str);
-	id->str = malloc(sizeof(char) * padding + 1);
+	id->str = malloc(sizeof(char) * padding);
 	id->str[--padding] = '\0';
 	while (padding--)
 		id->str[padding] = ' ';

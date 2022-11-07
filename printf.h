@@ -6,7 +6,7 @@
 /*   By: tnaton <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/01 09:55:47 by tnaton            #+#    #+#             */
-/*   Updated: 2022/06/17 12:19:41 by tnaton           ###   ########.fr       */
+/*   Updated: 2022/06/16 17:02:42 by tnaton           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,25 +18,25 @@
 
 typedef struct s_str
 {
-	char			*str;
-	char			c;
-	int				type;
-	struct s_str	*next;
-	struct s_str	*prev;
-}	t_str;
+	char	*str;
+	char	c;
+	int		type;
+	struct s_str *next;
+	struct s_str *prev;
+} t_str;
 
-int		ft_printf(const char *input, ...);
+int	ft_printf(const char *input, ...);
 void	typeu(t_str *current, va_list *arg);
-int		putandlen(t_str *lst);
+int	putandlen(t_str *lst);
 void	expandlst(t_str *lst, va_list *arg);
 void	expand(t_str *current, va_list *arg);
 void	typeprc(t_str *current);
-int		needex(char *str);
+int	needex(char *str);
 void	typep(t_str *current, va_list *arg);
 t_str	*getstr(const char *input, va_list *arg);
 t_str	*getlst(const char *input);
 t_str	*getcleanlst(t_str *first);
-int		isdel(char c);
+int	isdel(char c);
 t_str	*newstr(char *str, t_str *prev);
 void	typegrosx(t_str *current, va_list *arg);
 void	typex(t_str *current, va_list *arg);
