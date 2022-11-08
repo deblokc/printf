@@ -6,7 +6,7 @@
 /*   By: tnaton <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/14 18:40:54 by tnaton            #+#    #+#             */
-/*   Updated: 2022/06/16 17:14:26 by tnaton           ###   ########.fr       */
+/*   Updated: 2022/11/08 19:51:32 by tnaton           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ char	*addspace(char *ret, int size, int type)
 	return (ft_strjoin_free(space, ret));
 }
 
-void	flagnull(t_str *id, char *ret)
+char	*flagnull2(t_str *id, char *ret)
 {
 	int	i;
 	int	last;
@@ -50,38 +50,64 @@ void	flagnull(t_str *id, char *ret)
 		}
 		i++;
 	}
+	return (ret);
+}
+
+int	flagnull3(t_str *id, char **ret, int *i)
+{
+	int	last;
+
+	last = *i;
+	while (ft_isdigit(id->str[*i]))
+		(*i)++;
+	last = ft_atoi_free(ft_substr(id->str, last, *i - last));
+	if (last < (int)ft_strlen(*ret))
+	{
+		free(id->str);
+		id->str = *ret;
+		return (1);
+	}
+	*ret = addspace(*ret, (last - ft_strlen(*ret)), 0);
+	return (0);
+}
+
+int	flagnull4(t_str *id, char **ret, int *i)
+{
+	int	last;
+
+	while (id->str[*i] == '-')
+		(*i)++;
+	last = *i;
+	while (ft_isdigit(id->str[*i]))
+		(*i)++;
+	last = ft_atoi_free(ft_substr(id->str, last, *i - last));
+	if (last < (int)ft_strlen(*ret))
+	{
+		free(id->str);
+		id->str = *ret;
+		return (1);
+	}
+	*ret = addspace(*ret, (last - ft_strlen(*ret)), 1);
+	return (0);
+}
+
+void	flagnull(t_str *id, char *ret)
+{
+	int	i;
+
+	ret = flagnull2(id, ret);
 	i = 1;
 	while (id->str[i])
 	{
 		if (isdigit(id->str[i]) && id->str[i - 1] != '.')
 		{
-			last = i;
-			while (ft_isdigit(id->str[i]))
-				i++;
-			last = ft_atoi_free(ft_substr(id->str, last, i - last));
-			if (last < (int)ft_strlen(ret))
-			{
-				free(id->str);
-				id->str = ret;
+			if (flagnull3(id, &ret, &i))
 				return ;
-			}
-			ret = addspace(ret, (last - ft_strlen(ret)), 0);
 		}
 		if (id->str[i] == '-')
 		{
-			while (id->str[i] == '-')
-				i++;
-			last = i;
-			while (ft_isdigit(id->str[i]))
-				i++;
-			last = ft_atoi_free(ft_substr(id->str, last, i - last));
-			if (last < (int)ft_strlen(ret))
-			{
-				free(id->str);
-				id->str = ret;
+			if (flagnull4(id, &ret, &i))
 				return ;
-			}
-			ret = addspace(ret, (last - ft_strlen(ret)), 1);
 		}
 		i++;
 	}
@@ -89,7 +115,7 @@ void	flagnull(t_str *id, char *ret)
 	id->str = ret;
 }
 
-void	flag(t_str *id, char *ret)
+char	*flag2(t_str *id, char *ret)
 {
 	int	i;
 	int	last;
@@ -114,41 +140,74 @@ void	flag(t_str *id, char *ret)
 		}
 		i++;
 	}
+	return (ret);
+}
+
+int	flag31(t_str *id, char ***ret, int *i)
+{
+	int	last;
+
+	last = *i;
+	while (ft_isdigit(id->str[*i]))
+		(*i)++;
+	last = ft_atoi_free(ft_substr(id->str, last, *i - last));
+	if (last < (int)ft_strlen(**ret))
+	{
+		free(id->str);
+		id->str = **ret;
+		return (1);
+	}
+	**ret = addspace(**ret, (last - ft_strlen(**ret)), 0);
+	return (0);
+}
+
+int	flag32(t_str *id, char ***ret, int *i)
+{
+	int	last;
+
+	while (id->str[*i] == '-')
+		(*i)++;
+	last = *i;
+	while (ft_isdigit(id->str[*i]))
+		(*i)++;
+	last = ft_atoi_free(ft_substr(id->str, last, *i - last));
+	if (last < (int)ft_strlen(**ret))
+	{
+		free(id->str);
+		id->str = **ret;
+		return (1);
+	}
+	**ret = addspace(**ret, (last - ft_strlen(**ret)), 1);
+	return (0);
+}
+
+int	flag3(t_str *id, char **ret)
+{
+	int	i;
+
 	i = 1;
 	while (id->str[i])
 	{
 		if (isdigit(id->str[i]) && id->str[i - 1] != '.')
 		{
-			last = i;
-			while (ft_isdigit(id->str[i]))
-				i++;
-			last = ft_atoi_free(ft_substr(id->str, last, i - last));
-			if (last < (int)ft_strlen(ret))
-			{
-				free(id->str);
-				id->str = ret;
-				return ;
-			}
-			ret = addspace(ret, (last - ft_strlen(ret)), 0);
+			if (flag31(id, &ret, &i))
+				return (1);
 		}
 		if (id->str[i] == '-')
 		{
-			while (id->str[i] == '-')
-				i++;
-			last = i;
-			while (ft_isdigit(id->str[i]))
-				i++;
-			last = ft_atoi_free(ft_substr(id->str, last, i - last));
-			if (last < (int)ft_strlen(ret))
-			{
-				free(id->str);
-				id->str = ret;
-				return ;
-			}
-			ret = addspace(ret, (last - ft_strlen(ret)), 1);
+			if (flag32(id, &ret, &i))
+				return (1);
 		}
 		i++;
 	}
+	return (0);
+}
+
+void	flag(t_str *id, char *ret)
+{
+	ret = flag2(id, ret);
+	if (flag3(id, &ret))
+		return ;
 	free(id->str);
 	id->str = ret;
 }
