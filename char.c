@@ -6,11 +6,11 @@
 /*   By: tnaton <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/14 18:40:07 by tnaton            #+#    #+#             */
-/*   Updated: 2022/11/08 16:25:10 by tnaton           ###   ########.fr       */
+/*   Updated: 2022/11/08 20:21:51 by tnaton           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "printf.h"
+#include "ft_printf.h"
 
 void	changeid(t_str *id, int padding)
 {

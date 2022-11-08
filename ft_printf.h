@@ -6,7 +6,7 @@
 /*   By: tnaton <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/01 09:55:47 by tnaton            #+#    #+#             */
-/*   Updated: 2022/06/16 17:02:42 by tnaton           ###   ########.fr       */
+/*   Updated: 2022/11/08 20:39:19 by tnaton           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,5 +50,29 @@ void	intflag(t_str *id, char *ret);
 int		aschr(char *str, char c);
 char	*getneg(char *ret, int *isneg);
 char	*addzero(char *ret, int size, int type);
+char	*intflag21(t_str *id, char *ret, int *i);
+char	*intflag22(t_str *id, char *ret, int *i);
+char	*intflag2(t_str *id, char *ret);
+int		intflag31(t_str *id, char ***ret, int *i);
+int		intflag32(t_str *id, char ***ret, int *i);
+char	*hexaflag21(t_str *id, char *ret, int *i);
+char	*hexaflag22(t_str *id, char *ret, int *i);
+char	*hexaflag2(t_str *id, char *ret);
+int		hexaflag31(t_str *id, char ***ret, int *i);
+int		hexaflag32(t_str *id, char ***ret, int *i);
+int		typeun(t_str *lst);
+int		typedeux(t_str *lst);
+int		typetrois(t_str *lst);
+int		typequatre(t_str *lst);
+int		putandlen(t_str *lst);
+char	*flag2(t_str *id, char *ret);
+int		flag31(t_str *id, char ***ret, int *i);
+int		flag32(t_str *id, char ***ret, int *i);
+int		flag3(t_str *id, char **ret);
+void	flag(t_str *id, char *ret);
+t_str	*getstr2(t_str *lst, t_str *ret);
+t_str	*getlst2(const char *input, t_str *current, int *i, int *last);
+int		intflag3(t_str *id, char **ret);
+char	*flagnull2(t_str *id, char *ret);
 
 #endif

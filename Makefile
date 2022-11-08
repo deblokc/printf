@@ -6,7 +6,7 @@
 #    By: tnaton <marvin@42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/11/25 18:31:36 by tnaton            #+#    #+#              #
-#    Updated: 2022/06/16 12:54:07 by tnaton           ###   ########.fr        #
+#    Updated: 2022/11/08 20:36:26 by tnaton           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,7 @@ INCLUDES = -I./includes
 
 NAME = libftprintf.a
 
-SRCS = printf.c char.c lst.c unsigned.c decimal.c hexa.c pointeur.c string.c
+SRCS = printf.c printf2.c char.c lst.c unsigned.c decimal.c decimal2.c hexa.c hexa2.c pointeur.c string.c string2.c extra.c
 
 OBJS = ${SRCS:.c=.o}
 
